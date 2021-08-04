@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:wordpair_generator/event-stream.dart';
 import 'package:wordpair_generator/random_pic.dart';
 
 // Press the Navigation Drawer button to the left of AppBar to show
@@ -19,6 +20,17 @@ class NavDrawerDemo extends StatelessWidget {
       MaterialPageRoute(
         builder: (BuildContext buildContext) {
           return RandomPicture();
+        }
+      )
+    );
+    }
+
+    _goToEventstream() {
+    Navigator.pop(context);  
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext buildContext) {
+          return EventStream();
         }
       )
     );
@@ -49,9 +61,7 @@ class NavDrawerDemo extends StatelessWidget {
             'page two'
           ),
           leading: const Icon(Icons.comment),
-          onTap: () {
-            Navigator.pop(context);
-          },
+          onTap: _goToEventstream,
         ),
       ],
     );
