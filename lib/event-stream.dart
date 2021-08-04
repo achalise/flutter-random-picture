@@ -33,7 +33,7 @@ class EventStreamState extends State<EventStream> {
         print("Received streamedResponse.statusCode:${streamedResponse.statusCode}");
         streamedResponse.stream.listen((data) {
           print("Received data:${utf8.decode(data)}");
-          var record = utf8.decode(data);
+          var record = utf8.decode(data).substring(6);
           setState(() {
             _records[0] = Record(name: record);
           });
@@ -44,32 +44,7 @@ class EventStreamState extends State<EventStream> {
       print("Error  $e");
     }
   }
-  _processStream() {
-    http.Client client = http.Client();
 
-    http.Request request = http.Request("GET", Uri.parse('http://localhost:5000/event-stream'));
-    request.headers["Accept"] = "text/event-stream";
-    request.headers["Cache-Control"] = "no-cache";
-
-    Future<http.StreamedResponse> response = client.send(request);
-    print("Subscribed!");
-    response.then((streamedResponse) => streamedResponse.stream.listen((value) {
-      final parsedData = utf8.decode(value);
-      print(parsedData);
-
-      //event:heartbeat
-      //data:{"type":"heartbeat"}
-            
-      final eventType = parsedData.split("\n")[0].split(":")[1];
-      print(eventType);
-      //heartbeat
-      final realParsedData = json.decode(parsedData.split("data:")[1]) as Map<String, dynamic>;
-      if (realParsedData != null) {
-      // do something
-      }
-    }, onDone: () => print("The streamresponse is ended"), onError: () => print("Error in consuming stream")));
-
-  }
   Widget _dynamicView() {
     return Text(_records.map((e) => e.name).join(" "));
   }

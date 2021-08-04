@@ -3,8 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:wordpair_generator/event-stream.dart';
-import 'package:wordpair_generator/random_pic.dart';
+import 'package:event_stream_app/event-stream.dart';
+import 'package:event_stream_app/random_pic.dart';
 
 // Press the Navigation Drawer button to the left of AppBar to show
 // a simple Drawer with two items.
@@ -58,7 +58,7 @@ class NavDrawerDemo extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            'page two'
+            'Event Stream'
           ),
           leading: const Icon(Icons.comment),
           onTap: _goToEventstream,

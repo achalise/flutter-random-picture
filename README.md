@@ -1,5 +1,5 @@
 Trying out Flutter to build a mobile app that fetches and displays a random picture from [Unsplash](https://unsplash.com) on each button press.
-
+And also trying out consuming server sent events..
 ## Getting Started
 
 This project is a starting point for a Flutter application.
